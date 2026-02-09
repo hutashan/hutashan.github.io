@@ -1,19 +1,836 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Hutashan</title>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hutashan Chandrakar - Engineering Management Leader | AI & Data Engineering</title>
+    <meta name="description" content="Engineering leader with 18+ years building AI systems, intelligent agents, and scalable data platforms at Adobe, HPE, Verizon Labs, and Cisco.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-card: #ffffff;
+            --accent-primary: #2563eb;
+            --accent-secondary: #7c3aed;
+            --accent-tertiary: #db2777;
+            --text-primary: #1f2937;
+            --text-secondary: #4b5563;
+            --text-muted: #6b7280;
+            --border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .gradient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-primary), transparent);
+            top: -250px;
+            right: -250px;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-secondary), transparent);
+            bottom: -200px;
+            left: -200px;
+            animation-delay: 5s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent-tertiary), transparent);
+            top: 50%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            padding: 8rem 0;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            color: var(--accent-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.35);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-primary);
+            border: 2px solid var(--accent-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            transform: translateY(-3px);
+        }
+
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 4rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .tag {
+            padding: 0.5rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        section {
+            padding: 6rem 0;
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+            transition: width 0.3s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateX(10px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.15);
+        }
+
+        .experience-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .company-info h3 {
+            font-size: 1.8rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .role {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .duration {
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+        }
+
+        .achievements {
+            list-style: none;
+        }
+
+        .achievements li {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .achievements li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-category h3::before {
+            content: '◆';
+            font-size: 1rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-item {
+            padding: 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+        }
+
+        .contact-section {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 4rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: var(--accent-primary);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: 6rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero-description {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .experience-header {
+                flex-direction: column;
+            }
+            .contact-section {
+                padding: 2rem;
+            }
+            .contact-info {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-  <h1>Hutashan</h1>
-  <p>Professional summary goes here</p>
+    <div class="bg-grid"></div>
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
 
-  <h2>Experience</h2>
-  <p>Your experience</p>
+    <header>
+        <nav class="container">
+            <div class="logo">HC</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <h2>Projects</h2>
-  <p>Your projects</p>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-subtitle">Engineering Management Leader</div>
+            <h1>Hutashan Chandrakar</h1>
+            <p class="hero-description">
+                Building the future of data engineering, AI, and intelligent agents. 18+ years leading high-performing teams 
+                to deliver scalable data platforms, ML models, and agentic systems that drive business transformation.
+            </p>
+            <div class="cta-buttons">
+                <a href="https://www.linkedin.com/in/hutashan-chandrakar/" target="_blank" class="btn btn-primary">LinkedIn Profile →</a>
+                <a href="https://github.com/hutashan-chandrakar" target="_blank" class="btn btn-secondary">GitHub</a>
+            </div>
+            <div class="expertise-tags">
+                <span class="tag">AI & Machine Learning</span>
+                <span class="tag">Intelligent Agents</span>
+                <span class="tag">Data Engineering</span>
+                <span class="tag">Big Data Infrastructure</span>
+                <span class="tag">Engineering Leadership</span>
+            </div>
+        </div>
+    </section>
 
+    <section id="about" class="animate-on-scroll">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">About Me</div>
+                <h2 class="section-title">Driving Innovation Through Data & AI</h2>
+                <p class="section-description">
+                    A dynamic, results-driven leader with expertise in architecting cutting-edge data platforms, 
+                    implementing AI/ML solutions, and building intelligent agent systems. Passionate about mentoring 
+                    engineering talent while delivering solutions that enhance business performance through data-driven innovation.
+                </p>
+            </div>
+        </div>
+    </section>
 
+    <section id="experience" class="animate-on-scroll">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Career Journey</div>
+                <h2 class="section-title">Professional Experience</h2>
+            </div>
+            
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="company-info">
+                            <h3>Adobe</h3>
+                            <div class="role">Senior Manager, Data Engineering</div>
+                        </div>
+                        <div class="duration">Jun 2019 — Present</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Leading team of 18 engineers delivering B2B Customer Data Platform and Adobe Experience Platform with AI-powered segmentation and intelligent agent systems</li>
+                        <li>Architected intelligent Account-Based Marketing (ABM) agents within AEP using ML models for hyper-personalized B2B marketing and predictive customer engagement</li>
+                        <li>Implemented AI-driven data ingestion pipelines with autonomous monitoring agents, anomaly detection, and real-time intelligent alerting systems</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="company-info">
+                            <h3>Aruba HPE (Niara)</h3>
+                            <div class="role">Principal Engineer</div>
+                        </div>
+                        <div class="duration">Feb 2018 — Jun 2019</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Designed machine learning and security algorithms for network behavior analytics and threat detection</li>
+                        <li>Built UBA detection systems and anomaly detection solutions integrating multiple log sources</li>
+                        <li>Architected Lambda-based batch and streaming ETL pipelines using Spark, HDFS, and Kafka</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="company-info">
+                            <h3>Verizon Labs</h3>
+                            <div class="role">Big Data Staff Engineer</div>
+                        </div>
+                        <div class="duration">Sep 2014 — Feb 2018</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Designed Trapezium framework enabling flexible ETL workflows (real-time, streaming, batch, hybrid processing)</li>
+                        <li>Developed Spark jobs for data quality, aggregation, and cybersecurity including DDoS attack detection</li>
+                        <li>Built anomaly detection solutions for IoT devices with advanced NoSQL data modeling (Cassandra/HBase)</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="company-info">
+                            <h3>Cisco Systems</h3>
+                            <div class="role">Software Engineer (Big Data)</div>
+                        </div>
+                        <div class="duration">Jul 2006 — Aug 2014</div>
+                    </div>
+                    <ul class="achievements">
+                        <li>Developed and optimized HDFS ecosystem components (MapReduce, Pig, Hive, Sqoop) for enhanced data processing</li>
+                        <li>Created custom MapReduce programs for parsing and analyzing unstructured log files</li>
+                        <li>Built full-stack applications using Spring Core, Spring MVC, and modern web technologies (SOAP, WSDL, DOM4j)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="animate-on-scroll">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Technical Expertise</div>
+                <h2 class="section-title">Skills & Technologies</h2>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>AI & Machine Learning</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Intelligent Agents</span>
+                        <span class="skill-item">Agentic Systems</span>
+                        <span class="skill-item">ML Model Development</span>
+                        <span class="skill-item">Anomaly Detection</span>
+                        <span class="skill-item">Predictive Analytics</span>
+                        <span class="skill-item">Network Behavior Analytics</span>
+                        <span class="skill-item">User Behavior Analytics</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Data Engineering</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Apache Spark</span>
+                        <span class="skill-item">Hadoop Ecosystem</span>
+                        <span class="skill-item">Kafka</span>
+                        <span class="skill-item">Real-time Processing</span>
+                        <span class="skill-item">ETL Pipelines</span>
+                        <span class="skill-item">Data Modeling</span>
+                        <span class="skill-item">Snowflake</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Big Data & NoSQL</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Cassandra</span>
+                        <span class="skill-item">HBase</span>
+                        <span class="skill-item">HDFS</span>
+                        <span class="skill-item">MapReduce</span>
+                        <span class="skill-item">Hive</span>
+                        <span class="skill-item">Sqoop</span>
+                        <span class="skill-item">Pig</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Programming & Frameworks</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Scala</span>
+                        <span class="skill-item">Java</span>
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">Spring Framework</span>
+                        <span class="skill-item">REST APIs</span>
+                        <span class="skill-item">Microservices</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Cloud & Architecture</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Distributed Systems</span>
+                        <span class="skill-item">Lambda Architecture</span>
+                        <span class="skill-item">Scalable Platforms</span>
+                        <span class="skill-item">Multi-tenant Systems</span>
+                        <span class="skill-item">Cloud Infrastructure</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Leadership & Strategy</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Team Management</span>
+                        <span class="skill-item">Technical Leadership</span>
+                        <span class="skill-item">Agile/Scrum</span>
+                        <span class="skill-item">Mentorship</span>
+                        <span class="skill-item">Cross-functional Collaboration</span>
+                        <span class="skill-item">Strategic Planning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="animate-on-scroll">
+        <div class="container">
+            <div class="contact-section">
+                <div class="section-label">Connect</div>
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-description">
+                    Interested in discussing data engineering, AI, or leadership opportunities? 
+                    Connect with me on LinkedIn or GitHub.
+                </p>
+                
+                <div class="contact-info">
+                    
+                    <a href="https://www.linkedin.com/in/hutashan-chandrakar/" target="_blank" class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--text-primary);">LinkedIn</div>
+                            <div>View Profile</div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://github.com/hutashan-chandrakar" target="_blank" class="contact-item">
+                        <div class="contact-icon">💻</div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--text-primary);">GitHub</div>
+                            <div>View Repositories</div>
+                        </div>
+                    </a>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <div style="font-weight: 600; color: var(--text-primary);">Location</div>
+                            <div>San Jose, CA</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Hutashan Chandrakar. All rights reserved.</p>
+            <p style="margin-top: 0.5rem;">San Jose, CA</p>
+        </div>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
